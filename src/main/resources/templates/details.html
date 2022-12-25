@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Ассенгеймер Дмитрий">
+    <meta name="description" content="Страница для курсовой работы. Тема: энциклопедия морской среды">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/details.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>Grand Blue</title>
+</head>
+<body>
+<div class="wrapper">
+    <header th:insert="blocks/header :: header"></header>
+
+    <div class="content" th:each="elem : ${article}">
+
+        <div class="info">
+            <div class="topPart">
+                <img class="infoImage" th:src="'/images/' + ${elem.getImgsrc()}">
+                <div class="mainInfo">
+                    <div class="mainInfoBlock">
+                        <h1 th:text="${elem.getName()}"></h1>
+                        <p th:if="${elem.getFood() != null}">Тип питания:
+                            <span th:text="${elem.getFood() == 'Carnivore'} ? 'плотоядное' : 'травоядное'">
+                            </span></p>
+                        <p th:if="${elem.getPlace() != null}">Места обитания: <span th:text="${elem.place}">
+                        </span></p>
+                    </div>
+                </div>
+            </div>
+            <p class="description" th:text="${elem.getDescription()}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

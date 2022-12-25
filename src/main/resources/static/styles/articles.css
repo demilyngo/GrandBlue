@@ -1,0 +1,214 @@
+
+/*OPTIONS FILTER*/
+.sidebar {
+    width: 220px;
+    font-size: 23px;
+    margin: 10px 10px;
+    position: fixed;
+}
+.filter {
+    padding: 8px 0;
+    border: 2px solid #00A3FF;
+}
+
+#toTop {
+    margin-top: 100%;
+}
+
+.filterType {
+    width: 190px;
+    margin: 0 auto;
+}
+
+.filterFood {
+    margin-left: 10px;
+}
+
+.content {
+    margin-left: 230px;
+    padding: 0 10px;
+}
+
+#toTop {
+    display: none;
+}
+
+
+
+
+/*CONTENT*/
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    width: 440px;
+    height: 265px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #00A3FF;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+.itemImage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 24px;
+}
+
+.itemText {
+    position: relative;
+    top: -50px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    color: #00A3FF;
+    font-size: 36px;
+    background-color: #FFFFFF;
+    opacity: 0.7;
+    border-radius: 0px 0px 10px 10px;
+
+}
+
+.item:hover {
+
+    cursor: pointer;
+    transition: 0.4s;
+    filter: drop-shadow(0 0 4px #9EDBFD);
+}
+
+.item:hover .itemText {
+    transition: opacity 0.3s linear;
+    opacity: 1;
+}
+
+.buttons {
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.buttonOption {
+    appearance: none;
+    font-size: 16px;
+    width: 90px;
+    height: 30px;
+    background: #9EDBFD;
+    border-radius: 15px;
+    border-color: #00A3FF;
+    box-shadow: none;
+}
+
+.buttonOption:hover {
+    background: #FFFFFF;
+    color: #00A3FF;
+    border-color: #00A3FF;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.buttonOption:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #9EDBFD;
+}
+
+.options-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.options-input+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+.options-input+label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 2px solid #9EDBFD;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.options-input:checked+label::before {
+    border-color: #00A3FF;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2300A3FF' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+.options-input:not(:checked)+label:hover::before {
+    border-color: #00A3FF;
+}
+
+.options-input:focus+label::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.options-input:focus:not(:checked)+label::before {
+    border-color: #80bdff;
+}
+
+/* для элемента input c type="radio" */
+.food-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+/* для элемента label связанного с .food-input */
+.food-input+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+/* создание в label псевдоэлемента  before со следующими стилями */
+.food-input+label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #9EDBFD;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+/* стили при наведении курсора на радио */
+.food-input:not(:checked)+label:hover::before {
+    border-color: #00A3FF;
+}
+/* стили для активной радиокнопки (при нажатии на неё) */
+.food-input:not(:disabled):active+label::before {
+    background-color: #b3d7ff;
+    border-color: #b3d7ff;
+}
+/* стили для радиокнопки, находящейся в фокусе */
+.food-input:focus+label::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+/* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
+.food-input:focus:not(:checked)+label::before {
+    border-color: #80bdff;
+}
+/* стили для радиокнопки, находящейся в состоянии checked */
+.food-input:checked+label::before {
+    border-color: #00A3FF;
+    background-color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2300A3FF'/%3e%3c/svg%3e");
+}
+

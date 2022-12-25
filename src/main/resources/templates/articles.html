@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Ассенгеймер Дмитрий">
+    <meta name="description" content="Страница для курсовой работы. Тема: энциклопедия морской среды">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/articles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>Grand Blue</title>
+
+</head>
+<body>
+<div class="wrapper">
+    <header th:insert="blocks/header :: header"></header>
+    <div class="sidebar">
+        <div class="filter">
+            <form>
+                <div class="filterType">
+                    <div class="options-item">
+                        <input type="checkbox" name="type" id="facts" class="options-input" v-model="type" value="Facts">
+                        <label for="facts" class="options-label">Факты</label>
+                    </div>
+                    <div class="options-item" >
+                        <input type="checkbox" name="type" id="animals" class="options-input" v-model="type" value="Animals">
+                        <label for="animals" class="options-label">Животные</label>
+                        <div class="filterFood" v-if="type.includes('Animals')">
+                            <div class="options-item">
+                                <input type="radio" name="food" value="All" id="all" class="food-input" checked>
+                                <label for="all" class="options-label">Все</label>
+                            </div>
+                            <div class="options-item">
+                                <input type="radio" name="food" value="Carnivore" id="carnivore" class="food-input" >
+                                <label for="carnivore" class="options-label">Плотоядные</label>
+                            </div>
+                            <div class="options-item">
+                                <input type="radio" name="food" value="Herbivore" id="herbivore" class="food-input">
+                                <label for="herbivore" class="options-label">Травоядные</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="options-item">
+                        <input type="checkbox" name="type" id="plants" class="options-input" v-model="type" value="Plants">
+                        <label for="plants" class="options-label">Растения</label>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="buttonOption" type="submit">Найти</button>
+                    <button class="buttonOption" th:href="'../articles'">Сбросить</button>
+                </div>
+            </form>
+
+        </div>
+        <div id="toTop">
+            Наверх
+        </div>
+    </div>
+    <div class="content">
+        <div class="row" th:each="el, row : ${articles}" th:if="${row.index % 3} == 0">
+            <a th:each="el, article : ${articles}" th:href="'/articles/' + ${el.getID()}" class="item"
+               th:if="${article.index lt row.index + 3 and article.index ge row.index}">
+                <img class="itemImage" th:src="'/images/' + ${el.getImgsrc()}">
+                <p class="itemText" th:text="${el.getName()}"></p>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var FilterFood = new Vue ({
+        el: '.filter',
+        data: {
+        type: []
+    },
+    });
+    $(function() {
+        $(window).scroll(function() {
+            if($(this).scrollTop() != 0) {
+                $('#toTop').fadeIn();
+            } else {
+                $('#toTop').fadeOut();
+            }
+        });
+        $('#toTop').click(function() {
+            $('body,html').animate({scrollTop:0},800);
+        });
+    });
+</script>
+</body>
+
+</html>

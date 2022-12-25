@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>"Добавление статьи"</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+
+<div class="container mt-5 mb-5">
+    <h1>Добавление статьи</h1>
+    <form action="/articles/add" method="post" id="form">
+        <input type="text" name="name" placeholder="Введите название" class="form-control"><br>
+        <div class="options-item">
+            <input type="radio" name="type" id="facts" class="options-input" v-model="type" value="Facts" checked>
+            <label for="facts" class="options-label">Факт</label>
+        </div>
+        <div class="options-item">
+            <input type="radio" name="type" id="animals" class="options-input" v-model="type" value="Animals" >
+            <label for="animals" class="options-label">Животные</label>
+        </div>
+        <div class="options-item">
+            <input type="radio" name="type" id="plants" class="options-input" v-model="type" value="Plants">
+            <label for="plants" class="options-label">Растения</label>
+        </div>
+        <textarea type="text" name="description" placeholder="Введите полный текст" class="form-control" id="description"></textarea><br>
+        <textarea v-if="type !== 'Facts'" type="text" name="place" placeholder="Введите места обитания" class="form-control" ></textarea><br>
+
+        <div class="food" v-if="type === 'Animals'">
+            <div class="options-item">
+                <input type="radio" name="food" id="carnivore" class="options-input" value="Carnivore" checked>
+                <label for="carnivore" class="options-label">Плотоядное</label>
+            </div>
+            <div class="options-item">
+                <input type="radio" name="food" id="herbivore" class="options-input" value="Herbivore">
+                <label for="herbivore" class="options-label">Травоядное</label>
+            </div>
+        </div>
+        <input name="imgsrc" type="file">
+        <button type="submit" class="btn btn-success">Добавть статью</button>
+    </form>
+</div>
+
+<script>
+    var Radio = new Vue ({
+        el: '#form',
+        data: {
+            type: 'Facts'
+        },
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Ассенгеймер Дмитрий">
+    <meta name="description" content="Страница для курсовой работы.
+    Тема: энциклопедия морской среды">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+    <title>Grand Blue</title>
+</head>
+<body>
+<div class="wrapper">
+
+    <header th:insert="blocks/header :: header"></header>
+
+    <div class="content">
+        <div class="row">
+            <div class="item" th:each="el : ${randomArticles}">
+                <a th:href="'/articles/' + ${el.getID()}">
+                    <img class="itemImage" th:src="'images/' + ${el.getImgsrc()}">
+                    <p class="itemName" th:text="${el.getName()}"></p>
+                    <p class="itemDescription" th:text="${el.getDescription()}"></p>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

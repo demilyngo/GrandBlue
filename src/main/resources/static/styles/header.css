@@ -1,0 +1,34 @@
+/*HEADER*/
+.header {
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #9EDBFD;
+    z-index: 100;
+}
+
+.headerBody {
+    position: relative;
+    display:  flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.headerBody a{
+    width: 300px;
+    text-align: center;
+    text-decoration: none;
+    color: #333333;
+    font-size: 30px;
+    top: 50%;
+    border-radius: 10px;
+}
+
+.headerBody a:hover {
+    color: #FFFFFF;
+    box-shadow: 0 0 5px 5px #FFFFFF;
+    transition: 0.4s;
+}
+

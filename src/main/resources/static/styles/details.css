@@ -1,0 +1,35 @@
+.content {
+    padding-top: 10px;
+}
+
+.info {
+    margin: 0 auto;
+    padding-right: 80px;
+    width: 1200px;
+    text-align: justify;
+    line-height: 35px;
+    font-size: 18px;
+}
+
+.infoImage {
+    display: block;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.topPart {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.mainInfoBlock {
+    width: 300px;
+    text-align: left;
+    border: 3px solid #00A3FF;
+    padding-left: 20px;
+}
+
+
+
+
+
